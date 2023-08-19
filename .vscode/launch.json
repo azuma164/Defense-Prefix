@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "name": "Python Debug Test",
+      "type": "python",
+      "request": "launch",
+      "program": "eval.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}

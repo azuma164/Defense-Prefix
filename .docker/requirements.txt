@@ -1,0 +1,12 @@
+numpy
+ftfy
+regex
+tqdm
+git+https://github.com/openai/CLIP.git
+tensorboard
+scipy
+### text-to-image https://colab.research.google.com/drive/15UwYDsnNeldJFHJ9NdgYBYeo6xPmSelP#scrollTo=FhhdWrSxQhwg
+omegaconf
+pytorch-lightning
+einops
+transformers
