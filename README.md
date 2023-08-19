@@ -1,5 +1,7 @@
 # Defense-Prefix for Preventing Typographic Attacks on CLIP
-![Arch_figure](figure/abst.png)
+<p align="center">
+  <img src="figure/abst.png" width="600">
+</p>
 This repository contains PyTorch implementation for our paper: Defense-Prefix for Preventing Typographic Attacks on CLIP ([arXiv](https://arxiv.org/abs/2304.04512))
 
 ### Abstract
