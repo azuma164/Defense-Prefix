@@ -45,7 +45,7 @@ CoOp/
 patching/data/
 patching/models/
 
-*.zip
+datasets/*.zip
 
 taxt_to_image/taming-transformers/
 
