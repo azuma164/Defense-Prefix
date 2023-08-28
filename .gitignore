@@ -53,4 +53,7 @@ BadEncoder/data/
 
 BadEncoder/log/
 
+.vscode/
+
+
 model*

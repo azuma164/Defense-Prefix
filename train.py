@@ -21,12 +21,10 @@ def optimize_prefix_token(args, object_tokens, model, preprocess):
     asterix_token = clip.tokenize(["*"]).to(device)[0][1]
 
     trainable_estimated_tokens = torch.nn.Embedding.from_pretrained(object_tokens, freeze=False) #create learnble tokens
-    print(trainable_estimated_tokens.weight[0].unsqueeze(0).shape)
 
     optimizer = optim.SGD(trainable_estimated_tokens.parameters(), lr=args.latent_lr)
 
     schedular = optim.lr_scheduler.CosineAnnealingLR(optimizer, args.latent_ep, eta_min=0.00005, verbose=True)
-    print("trainable_estimated_tokens", trainable_estimated_tokens)
 
     torch.cuda.empty_cache()
     trainable_estimated_tokens = optimize_trainable_prefix_token(args, asterix_token, model,
@@ -118,36 +116,35 @@ def cross_entropy_kl_loss(original_images, typographic_images, model, token_pref
     if no_reg:
         loss = loss1
     else:
-        loss = seta*loss1 + gamma * loss2
+        loss = seta * loss1 + gamma * loss2
     return loss
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--tokens_path', type=str, default='./learned_token/prefix_tokens_10ep.pt')
     parser.add_argument('--latent_lr', type=float, default=0.002)
     parser.add_argument('--latent_ep', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=512)
     parser.add_argument('--prefix_num', type=int, default=1)
     parser.add_argument('--gamma', type=float, default=1)
+    parser.add_argument('--seta', type=float, default=1)
     parser.add_argument('--name', type=str, default='')
     parser.add_argument('--no_reg', action='store_true')
-    parser.add_argument('--seta', type=float, default=1)
     args = parser.parse_args()
 
     # model, preprocess = clip.load("RN50x4", device=device)
     model, preprocess = clip.load("ViT-B/32", device=device)
 
-    #Inser CLIP text encoding with learnt token methods
+    # Insert CLIP text encoding with learnt token methods
     funcType = type(model.encode_text)
     model.encode_text_with_learnt_tokens = funcType(encode_text_with_learnt_tokens, model)
 
-    ######### Get tokens ########
+    # Initialize prefix token
     prefix_tokens = clip.tokenize(["X"]).to(device)
     prefix_tokens = model.token_embedding(prefix_tokens)[0][1].unsqueeze(0)
     prefix_tokens = torch.empty(args.prefix_num, prefix_tokens.shape[1], dtype=model.dtype, device=device, requires_grad=True)
     nn.init.normal_(prefix_tokens, std=0.02)
-    # Initialize prefix token
+    
     prefix_tokens = optimize_prefix_token(args, prefix_tokens, model, preprocess)
 
     if args.no_reg:

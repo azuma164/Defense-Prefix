@@ -38,7 +38,7 @@ def dataset(args, preprocess):
     # real world data
     elif args.dataset == 'paint':
         data = PAINTDataset(root='datasets', transform=preprocess)
-    elif args.dataset == 'disentanglement':
+    elif args.dataset == 'disentangling':
         data = DisentanglingDataset(root='datasets', transform=preprocess)
     elif args.dataset == 'rta-100':
         data = RTA100(root='datasets', transform=preprocess)

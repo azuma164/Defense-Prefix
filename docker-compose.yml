@@ -1,0 +1,14 @@
+volumes:
+  ignore:
+version: '3.8'
+services:
+  defense-prefix:
+    build: .
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - source: .
+        target: /root
+        type: bind
+    tty: true

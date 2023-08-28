@@ -56,22 +56,24 @@ def eval_on_dataset(args, model, preprocess, prefix_tokens):
     
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--tokens_path', type=str, default='./learned_token/experiment4_100ep_1_prefix_0.002_SGD_reg.pt')
+    parser.add_argument('--dataset',type=str)
+    parser.add_argument('--tokens_path', type=str, default='./learned_token/dp_vit-b32.pt')
     parser.add_argument('-t', '--evaluate_on_TA', action='store_true')
     args = parser.parse_args()
 
     model, preprocess = clip.load("ViT-B/32", device=device)
 
-    #Inser CLIP text encoding with learnt token methods
+    # Insert CLIP text encoding with learnt token methods
     funcType = type(model.encode_text)
     model.encode_text_with_learnt_tokens = funcType(encode_text_with_learnt_tokens, model)
 
-    #load already inferred tokens
+    # load learned prefix
     prefix_tokens = torch.load(args.tokens_path)
-    print("args.tokens_path", args.tokens_path)
+    print("args.tokens_path: ", args.tokens_path)
 
-    dataset_name = ['imagenet', 'caltech', 'pets', 'cars', 'flowers', 'food', 'aircraft', 'dtd', 'sun', 'eurosat']
-    # dataset_name = ['disentanglement', 'paint', 'rta-100']
+    dataset_name = [args.dataset]
+    # dataset_name = ['imagenet', 'caltech', 'pets', 'cars', 'flowers', 'food', 'aircraft', 'dtd', 'sun', 'eurosat']
+    # dataset_name = ['disentangling', 'paint', 'rta-100']
 
     acc_CLIP, acc_ours = [], []
     for dataset_i in dataset_name:
@@ -84,8 +86,8 @@ def main():
     acc_ours.append(round((sum(acc_ours) / len(acc_ours)), 2))
 
     
-    print('& '.join(list(map(str, acc_CLIP))))
-    print('& '.join(list(map(str, acc_ours))))
+    print("CLIP: ", '& '.join(list(map(str, acc_CLIP))))
+    print("CLIP + Defense-Prefix: ", '& '.join(list(map(str, acc_ours))))
 
 if __name__ == '__main__':
     main()
