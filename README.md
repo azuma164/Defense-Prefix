@@ -10,13 +10,13 @@ Vision-language pre-training models (VLPs) have exhibited revolutionary improvem
 
 
 ### Evaluation
-### Synthetic images
+#### Synthetic images
 To reproduce the results of the paper, you can use the code below. If you use -t, it means you would evaluate on typographic attack images.
 ```
 python3 eval.py --dataset=caltech -t
 ```
 You can refer to dataset.py for other datasets
-### Real images
+#### Real images
 For images from [Materzynska et.al.(CVPR2022)](https://github.com/joaanna/disentangling_spelling_in_clip) and [PAINT(Ilhalco+, NeurIPS2022)](https://github.com/mlfoundations/patching), you can refer to each repository to download dataset.
 
 
