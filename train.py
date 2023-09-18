@@ -126,7 +126,7 @@ def main():
     parser.add_argument('--latent_ep', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=512)
     parser.add_argument('--prefix_num', type=int, default=1)
-    parser.add_argument('--gamma', type=float, default=1)
+    parser.add_argument('--gamma', type=float, default=3.0)
     parser.add_argument('--seta', type=float, default=1)
     parser.add_argument('--name', type=str, default='')
     parser.add_argument('--no_reg', action='store_true')
