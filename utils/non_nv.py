@@ -1,13 +1,6 @@
+# We refereed to the repository (https://github.com/NVlabs/PALAVRA) for the function of encode_text_with_learnt_tokens
+# Really appreciate the great code from NVIDIA
 # Copyright (C) 2022 NVIDIA Corporation.  All rights reserved.
-#
-# This file contain modified functions snippets from 
-# https://github.com/yuvalatzmon/COSMO
-# and
-# https://github.com/openai/CLIP
-#
-# The license for the original version of these functions can be
-# found in root directory: LICENSE_COSMO, LICENSE_CLIP, respetively. The modifications
-# to this file are subject to the License located at the root directory.
 # ---------------------------------------------------------------
 
 import torch
