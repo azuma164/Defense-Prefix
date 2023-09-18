@@ -11,7 +11,7 @@ Vision-language pre-training models (VLPs) have exhibited revolutionary improvem
 
 ### Training
 ```
-python3 train.py
+python3 train.py --name=defense_prefix
 ```
 
 
