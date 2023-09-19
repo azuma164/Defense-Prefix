@@ -16,6 +16,7 @@ python3 train.py --name=defense_prefix
 
 
 ### Evaluation
+You can find pre-trained tokens in /learned_token
 #### Synthetic images
 To reproduce the results of the paper, you can use the code below. If you use -t, it means you would evaluate on typographic attack images.
 ```
