@@ -29,9 +29,3 @@ For images from [Materzynska et.al.(CVPR2022)](https://github.com/joaanna/disent
 
 ### Dataset (RTA-100)
 The data can be found at rta100.zip. The annotations for each image are in the name of the file (e.g.label=dog_text=cat.png). To create the dataset, we refered to [PAINT(Ilhalco+, NeurIPS2022)](https://github.com/mlfoundations/patching).
-
-## TODO
-- [x] Inference code
-- [ ] Training code
-- [x] Dataset (RTA-100)
-
